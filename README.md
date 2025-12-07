@@ -45,4 +45,3 @@ This project is based on a dataset of approximately 3,500 real estate listings f
 - مسئله: **Regression** (پیش‌بینی قیمت)  
 - مدل اصلی: **XGBoost Regressor**  
 - معیارهای گزارش‌شده: MAE, RMSE, R² و نمودارهای Residual / Actual vs Predicted
-
