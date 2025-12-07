@@ -6,9 +6,9 @@ import joblib
 # -----------------------------
 # Load model & columns
 # -----------------------------
-model = joblib.load("C:\\Users\\Pedram\\OneDrive\\py\\webapp\\model\\final_xgboost_model.pkl")
-scaler = joblib.load("C:\\Users\\Pedram\\OneDrive\\py\\webapp\\model\\scaler.pkl")
-model_columns = joblib.load("C:\\Users\\Pedram\\OneDrive\\py\\webapp\\model\\model_columns.pkl")
+model = joblib.load("../model/final_xgboost_model.pkl")
+scaler = joblib.load("../model/scaler.pkl")
+model_columns = joblib.load("../model/model_columns.pkl")
 
 st.markdown("""
 <style>
@@ -89,4 +89,5 @@ if st.button("🔍 پیش‌بینی قیمت"):
     usd_pred = prediction / 30000
     st.success(f"💰 **قیمت پیش‌ بینی‌ شده: {prediction:,.0f} تومان**")
     st.success(f"💰 **با دلار 30,000 تومان قیمت پیش‌ بینی‌ شده: {usd_pred:,.0f} دلار**")
+
 
