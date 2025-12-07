@@ -9,15 +9,6 @@ st.markdown("""
     <h4 style="color:gray; margin-top:-10px;">(Dataset Overview)</h4>
 </div>
 """, unsafe_allow_html=True)
-st.markdown("""
-<style>
-/* کل صفحه RTL و راست‌چین می‌شود */
-html, body, [class*="css"] {
-    direction: rtl;
-    text-align: right;
-}
-</style>
-""", unsafe_allow_html=True)
 
 # ---- CARD STYLE ----
 st.markdown("""
@@ -44,24 +35,24 @@ st.markdown("""
 # ---- MAIN DATASET CARD ----
 st.markdown('<div class="big-card">', unsafe_allow_html=True)
 
-st.header( "📊 معرفی دیتاست" , divider=True)
+st.header( "📊 Dataset Introduction" , divider=True)
 
 
 st.markdown("""
-این پروژه از حدود **۳۵۰۰** نمونه آگهی مسکن تشکیل شده که مربوط به **سال ۱۳۹۹** هستند.  
-<strong>هر رکورد شامل اطلاعات زیر است:</strong>
+This project consists of approximately 3500 housing advertisement samples from the year 1399 (Persian calendar).
 
-- مساحت به **متر مربع** -> Area
-- تعداد **اتاق‌خواب** -> Room
-- وضعیت **پارکینگ** -> Parking
-- وضعیت **آسانسور** -> Elevator
-- وضعیت **انباری** -> Warehouse
-- **منطقه** ملک -> Address
-- **قیمت** -> Price
+<strong>Each record includes the following information:</strong>
 
+- Area in *square meters** -> Area
+- Number of **bedrooms** -> Room
+- status **Parking** -> Parking
+- status **Elevator** -> Elevator
+- status **Warehouse** -> Warehouse
+- **region** Property -> Address
+- **Price** -> Price
 
 🔹 **نرخ تبدیل ارز:**  
-**۱ دلار = ۳۰٬۰۰۰ تومان**
+**1 dollar = 30,000 Tomans**
 
 """, unsafe_allow_html=True)
 
@@ -71,21 +62,21 @@ st.write("")
 st.write("")
 
 # ---- FEATURES IN CARDS ----
-st.subheader("🔎 ویژگی‌های موجود در دیتاست")
+st.subheader("🔎 Features in the dataset")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown('<div class="small-card"><h4>📐 مساحت</h4><p>متر مربع</p></div>', unsafe_allow_html=True)
-    st.markdown('<div class="small-card"><h4>🚗 پارکینگ</h4><p>دارد / ندارد</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="small-card"><h4>📐 Area</h4><p>in square meters</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="small-card"><h4>🚗 Parking</h4><p>true / false </p></div>', unsafe_allow_html=True)
 
 with col2:
-    st.markdown('<div class="small-card"><h4>🛏 اتاق خواب</h4><p>تعداد</p></div>', unsafe_allow_html=True)
-    st.markdown('<div class="small-card"><h4>📦 انباری</h4><p>دارد / ندارد</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="small-card"><h4>🛏 Room</h4><p>Number</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="small-card"><h4>📦 Warehouse</h4><p>true / false</p></div>', unsafe_allow_html=True)
 
 with col3:
-    st.markdown('<div class="small-card"><h4>🛗 آسانسور</h4><p>دارد / ندارد</p></div>', unsafe_allow_html=True)
-    st.markdown('<div class="small-card"><h4>📍 منطقه</h4><p>محله / Zone</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="small-card"><h4>🛗 Elevator</h4><p>true / false</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="small-card"><h4>📍 Area</h4><p>region / Zone</p></div>', unsafe_allow_html=True)
 
 
 st.write("")
@@ -94,31 +85,31 @@ st.write("")
 # ---- MODEL INFORMATION ----
 st.markdown("""
 <div class="big-card">
-    <h3>🤖 مدل استفاده‌شده</h3>
+    <h3>🤖 Model Used</h3>
     <p>
-    این پروژه برای پیش‌بینی قیمت خانه از مدل قدرتمند 
-    <strong>XGBoost Regressor</strong> استفاده می‌کند.
+    This project employs the powerful XGBoost Regressor model for house price prediction.
+    <strong>XGBoost Regressor</strong>
     <br>
-    مدل بر اساس ویژگی‌های موجود آموزش دیده و قیمت ملک را تخمین می‌زند.
+    The model has been trained based on the available features to estimate property prices.
     <br>
     </p>
-    <strong>بهترین پارامتر های پیدا شده برای مدل xgboost عبارتند از:</strong>
+    <strong>The best parameters found for the XGBoost model are:</strong>
     <ul>
         <li><strong>learning_rate:</strong> 0.5</li>
         <li><strong>max_depth:</strong> 3</li>
         <li><strong>n_estimators:</strong> 200</li>
     </ul>
-    <strong>بهترین نتایج مدل XGBRegressor:</strong>
+    <strong>The best results for the XGBRegressor model are:</strong>
     <ul>   
-        <li>ضریب تعیین (R²) در مجموعه train : <strong>94.20٪</strong></li>
-        <li>ضریب تعیین (R²) در مجموعه test : <strong>86.36٪</strong></li>
-        <li>ریشه میانگین مربعات خطا (RMSE): <strong>1,074,807,672.45</strong></li>
+        <li>Coefficient of Determination (R²) on the train set: <strong>94.20٪</strong></li>
+        <li>Coefficient of Determination (R²) on the test set: <strong>86.36٪</strong></li>
+        <li>Root Mean Squared Error (RMSE): <strong>1,074,807,672.45</strong></li>
     </ul>   
 </div>
 """, unsafe_allow_html=True)
 st.markdown("""
 <div class="big-card">
-    <strong>🤖 پارامتر های تست شده برای مدل xgboost عبارتند از:</strong>
+    <strong>🤖 The parameters tested for the xgboost model are:</strong>
     <ul>
         <li><strong>learning_rate:</strong> [0.01, 0.1, 0.5,0.2]</li>
         <li><strong>max_depth:</strong> [3, 5, 7,9]</li>
@@ -129,7 +120,8 @@ st.markdown("""
             
 st.write("")
 st.write("")
-st.subheader("📚 منبع داده‌ها")
+st.subheader("📚 Data source")
 
-st.write("این داده‌ها از وب‌ سایت **Kaggle** جمع‌آوری شده‌اند. برای مشاهده دیتاست اصلی می‌توانید به لینک زیر مراجعه کنید:"
+st.write("This data was collected from the **Kaggle** website. To view the original dataset, you can visit the following link:"
+
 "https://www.kaggle.com/datasets/mokar2001/house-price-tehran-iran")
