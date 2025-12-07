@@ -3,7 +3,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np 
-df = pd.read_csv("C:\\Users\\Pedram\\OneDrive\\py\\webapp\\data\\cleaned_dataset.csv")
+df = pd.read_csv("../data/cleaned_dataset.csv")
 st.title(" 🔎 تحلیل داده‌ها (EDA)")
 st.markdown("""
 <style>
@@ -137,4 +137,5 @@ with tab5:
         عملکرد مدل روی داده‌های جدید قابل اعتماد و پایدار بود.
 
         به همین دلیل، این مدل به‌عنوان بهترین مدل نهایی پروژه انتخاب شد.
+
         """)
