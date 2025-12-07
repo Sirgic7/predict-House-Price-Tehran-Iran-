@@ -3,8 +3,13 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np 
-df = pd.read_csv("../data/cleaned_dataset.csv")
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+csv_path = os.path.join(BASE_DIR, "data", "cleaned_dataset.csv")
+df = pd.read_csv(csv_path)
 st.title(" 🔎 تحلیل داده‌ها (EDA)")
+
 st.markdown("""
 <style>
 /* کل صفحه RTL و راست‌چین می‌شود */
@@ -139,3 +144,4 @@ with tab5:
         به همین دلیل، این مدل به‌عنوان بهترین مدل نهایی پروژه انتخاب شد.
 
         """)
+
