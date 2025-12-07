@@ -98,11 +98,10 @@ with tab5:
         - Enable faster and more stable model training.
         ---
 
-        #### **🔹 2. One-Hot Encoding for Address**
-
-
+         #### 🔹 **2. One-Hot Encoding for Address**
         Since the address is a categorical feature, it was converted using One-Hot Encoding.
         This method allowed the model to learn the distinct valuation of each neighborhood without imposing an artificial order between them.
+        
         ---
 
         #### **🔹 3. Conversion of Boolean Features to Numeric**
@@ -118,7 +117,7 @@ with tab5:
     with st.expander("🤖 Final Model Selection", expanded=True):
 
         st.markdown("""
-        ####Why was XGBoost chosen as the final model?
+        #### Why was XGBoost chosen as the final model?
         
         ✔️ **It did not overfit.**
         The model demonstrated close and stable performance on both training and test data, indicating no overfitting occurred.
@@ -130,5 +129,6 @@ with tab5:
         The model's performance on new data was reliable and stable.
 
         """)
+
 
 
