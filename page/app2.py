@@ -6,9 +6,14 @@ import joblib
 # -----------------------------
 # Load model & columns
 # -----------------------------
-model = joblib.load("../model/final_xgboost_model.pkl")
-scaler = joblib.load("../model/scaler.pkl")
-model_columns = joblib.load("../model/model_columns.pkl")
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  
+model_path = os.path.join(BASE_DIR, "model", "final_xgboost_model.pkl")
+scaler_path = os.path.join(BASE_DIR, "model", "scaler.pkl")
+model_columns_path = os.path.join(BASE_DIR, "model", "model_columns.pkl")
+
+model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
+model_columns = joblib.load(model_columns_path)
 
 st.markdown("""
 <style>
@@ -89,5 +94,6 @@ if st.button("🔍 پیش‌بینی قیمت"):
     usd_pred = prediction / 30000
     st.success(f"💰 **قیمت پیش‌ بینی‌ شده: {prediction:,.0f} تومان**")
     st.success(f"💰 **با دلار 30,000 تومان قیمت پیش‌ بینی‌ شده: {usd_pred:,.0f} دلار**")
+
 
 
