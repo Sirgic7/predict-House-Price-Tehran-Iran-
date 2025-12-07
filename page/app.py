@@ -5,7 +5,7 @@ import pandas as pd
 # ---- TITLE SECTION ----
 st.markdown("""
 <div style="text-align:center; padding:15px 0;">
-    <h1 style="color:#4A90E2;">🏡 پروژه پیش‌بینی قیمت خانه</h1>
+    <h1 style="color:#4A90E2;">🏡 predict House Price Tehran Iran Project</h1>
     <h4 style="color:gray; margin-top:-10px;">(Dataset Overview)</h4>
 </div>
 """, unsafe_allow_html=True)
@@ -51,7 +51,7 @@ This project consists of approximately 3500 housing advertisement samples from t
 - **region** Property -> Address
 - **Price** -> Price
 
-🔹 **نرخ تبدیل ارز:**  
+🔹 **Currency exchange rate:**
 **1 dollar = 30,000 Tomans**
 
 """, unsafe_allow_html=True)
@@ -125,3 +125,4 @@ st.subheader("📚 Data source")
 st.write("This data was collected from the **Kaggle** website. To view the original dataset, you can visit the following link:"
 
 "https://www.kaggle.com/datasets/mokar2001/house-price-tehran-iran")
+
