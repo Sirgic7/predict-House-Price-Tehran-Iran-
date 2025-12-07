@@ -8,49 +8,39 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 csv_path = os.path.join(BASE_DIR, "data", "cleaned_dataset.csv")
 df = pd.read_csv(csv_path)
-st.title(" 🔎 تحلیل داده‌ها (EDA)")
+st.title(" 🔎Data Analysis (EDA)")
 
-st.markdown("""
-<style>
-/* کل صفحه RTL و راست‌چین می‌شود */
-html, body, [class*="css"] {
-    direction: rtl;
-    text-align: right;
-}
-</style>
-""", unsafe_allow_html=True)
 # Tabs
 tab1, tab2, tab3, tab4 ,tab5 = st.tabs(["📊 Overview", "📈 Distribution Plot", "📉 result Score ", "🔥 heatmap" , "📏Technical Details"])
 with tab1:
     st.subheader("📌Overview" , divider=True)
     st.markdown("""
         <div style="background-color:#ff9383; padding:18px; border-radius:12px; border:1px solid #b3d1ff;">
-        <strong>✨نکته :</strong><br>
-        این دیتاست نسخه‌ی تمیز شده و آماده استفاده است.  
-        تمام مقادیر گمشده حذف یا اصلاح شده، داده‌های پرت بررسی شده‌اند و مجموعه اکنون برای تحلیل دقیق و مدل‌سازی آماده است.
+        <strong>✨ Note:</strong><br>
+        This dataset is the cleaned and ready-to-use version. All missing values have been removed or corrected, outliers have been examined, and the dataset is now prepared for precise analysis and modeling.
         </div>
         """, unsafe_allow_html=True)
 
-    st.subheader("نمایش 5 سطر اول:")
+    st.subheader("Showing the first 5 rows:")
     st.dataframe(df.head())
 
-    st.subheader("Shape دیتاست:")
-    st.info(f"{df.shape[0]} ردیف و {df.shape[1]} ستون")
+    st.subheader("data shape:")
+    st.info(f"{df.shape[0]} Row و {df.shape[1]} Column")
 
-    st.subheader("خلاصه آماری:")
+    st.subheader("Statistical Summary:")
     st.dataframe(df.describe())
 
 
 with tab2:
     st.subheader("📈 Distribution Plot", divider=True)
 
-    feature = st.selectbox("یک ویژگی را انتخاب کنید:", df.columns)
+    feature = st.selectbox("Select a feature:", df.columns)
 
     fig, ax = plt.subplots()
     sns.histplot(df[feature], kde=True, ax=ax)
     st.pyplot(fig)
 with tab3:
-    st.subheader("📉 نتایج انواع مدل‌های train شده روی دیتا " , divider=True)
+    st.subheader("📉 Results of various trained models on the data " , divider=True)
     data = {
     'Train Score': [0.878695, 0.949185 ,0.983538 , 0.952829 ,0.942037 ],
     'test Score': [0.838673, 0.818874 , 0.837946 ,0.867382 ,0.863601  ],
@@ -81,7 +71,7 @@ with tab4:
 
 with tab5:
     st.subheader("🛠️ Technical Details", divider=True)
-    st.markdown("در ادامه جزئیات فنی پردازش داده و انتخاب مدل نهایی آورده شده است.")
+    st.markdown("The technical details of data processing and the selection of the final model are provided below.")
 
     # Style
     st.markdown("""
@@ -102,25 +92,23 @@ with tab5:
 
         st.markdown("""
         #### 🔹 **1. Normalization / Scaling**
+        Scaling was applied to numerical features such as price and area to:
 
-        برای ویژگی‌های عددی مانند **قیمت** و **متراژ** از اسکیلینگ استفاده شد تا:
-
-        - مدل تحت تاثیر مقیاس متفاوت متراژ و قیمت قرار نگیرد  
-        - آموزش مدل سریع‌تر و پایدارتر انجام شود  
+        - Prevent the model from being influenced by the differing scales of area and price. 
+        - Enable faster and more stable model training.
         ---
 
-        #### 🔹 **2. One-Hot Encoding برای آدرس**
+        #### **🔹 2. One-Hot Encoding for Address**
 
-        چون آدرس یک ویژگی *Categorical* است، با **One-Hot Encoding** تبدیل شد.  
-        این روش باعث شد مدل بدون ایجاد ترتیب ساختگی بین محله‌ها، تفاوت ارزش‌گذاری هر محله را یاد بگیرد.
 
+        Since the address is a categorical feature, it was converted using One-Hot Encoding.
+        This method allowed the model to learn the distinct valuation of each neighborhood without imposing an artificial order between them.
         ---
 
-        #### 🔹 **3. تبدیل ویژگی‌های Boolean به عدد**
+        #### **🔹 3. Conversion of Boolean Features to Numeric**
 
-        ویژگی‌های True/False به **۰ و ۱** تبدیل شدند تا مدل بتواند از آن‌ها در یادگیری استفاده کند.
-
-        این ویژگی‌ها معمولاً برای امکانات ملک (مانند آسانسور، پارکینگ و …) بسیار مهم هستند.
+        True/False features were converted to **0 and 1** so the model could utilize them in the learning process.
+        These features are typically very important for property amenities (such as elevator, parking, etc.).
         """)
 
     # -------------------------
@@ -130,18 +118,17 @@ with tab5:
     with st.expander("🤖 Final Model Selection", expanded=True):
 
         st.markdown("""
-        #### چرا مدل نهایی XGBoost انتخاب شد؟
+        ####Why was XGBoost chosen as the final model?
+        
+        ✔️ **It did not overfit.**
+        The model demonstrated close and stable performance on both training and test data, indicating no overfitting occurred.
 
-        ✔️ **Overfit نشد**  
-        مدل روی داده‌های آموزش و تست عملکرد نزدیک و باثباتی نشان داد، بنابراین بیش‌برازش اتفاق نیفتاد.
+        ✔️ **Best results among all models.**
+        XGBoost achieved the lowest error (RMSE) and highest accuracy (R²) compared to other models.
 
-        ✔️ **بهترین نتایج بین مدل‌ها**  
-        مدل XGBoost در مقایسه با سایر مدل‌ها کمترین خطا (RMSE) و بیشترین دقت (R²) را داشت.
-
-        ✔️ **پایداری و قدرت تعمیم بالا**  
-        عملکرد مدل روی داده‌های جدید قابل اعتماد و پایدار بود.
-
-        به همین دلیل، این مدل به‌عنوان بهترین مدل نهایی پروژه انتخاب شد.
+        ✔️ **High stability and generalization power.**
+        The model's performance on new data was reliable and stable.
 
         """)
+
 
