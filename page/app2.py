@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import joblib
+import os
 
 # -----------------------------
 # Load model & columns
@@ -15,15 +16,6 @@ model = joblib.load(model_path)
 scaler = joblib.load(scaler_path)
 model_columns = joblib.load(model_columns_path)
 
-st.markdown("""
-<style>
-/* کل صفحه RTL و راست‌چین می‌شود */
-html, body, [class*="css"] {
-    direction: rtl;
-    text-align: right;
-}
-</style>
-""", unsafe_allow_html=True)
 # -----------------------------
 # Page Config
 # -----------------------------
@@ -32,8 +24,8 @@ st.set_page_config(page_title="House Price Predictor", page_icon="🏡", layout=
 # -----------------------------
 # Title
 # -----------------------------
-st.title("🏡 **پیش‌بینی قیمت خانه**")
-st.write("با وارد کردن مشخصات ملک، قیمت آن را بر اساس مدل XGBoost پیش‌بینی کنید.")
+st.title("🏡 **predict House Price Tehran Iran**")
+st.write("Predict the price of a property based on the XGBoost model by entering its specifications.")
 
 # -----------------------------
 # Extract address columns
@@ -45,31 +37,31 @@ address_map = {name: name for name in address_cols}
 # -----------------------------
 # User Input Section
 # -----------------------------
-st.header("📋 اطلاعات ملک")
+st.header("📋Property information")
 
 col1, col2 = st.columns(2)
 
 with col1:
-    area = st.number_input("📏 متراژ (متر مربع)", min_value=30, max_value=200, step=1)
-    parking = st.selectbox("🚗 پارکینگ", ["ندارد", "دارد"])
-    warehouse = st.selectbox("📦 انباری", ["ندارد", "دارد"])
+    area = st.number_input("📏 Area (Square meter)", min_value=30, max_value=200, step=1)
+    parking = st.selectbox("🚗 parking", ["no", "Yes"])
+    warehouse = st.selectbox("📦 Warehouse",  ["no", "Yes"])
 
 with col2:
-    rooms = st.number_input("🛏 تعداد اتاق", min_value=0, max_value=5, step=1)
-    elevator = st.selectbox("⬆️ آسانسور", ["ندارد", "دارد"])
-    address = st.selectbox("📍 منطقه", address_cols)
+    rooms = st.number_input("🛏 Number of rooms", min_value=0, max_value=5, step=1)
+    elevator = st.selectbox("⬆️ Elevator",["no", "Yes"])
+    address = st.selectbox("📍 Area", address_cols)
 
 # تبدیل امکانات به عدد
-parking_val = 1 if parking == "دارد" else 0
-elevator_val = 1 if elevator == "دارد" else 0
-warehouse_val = 1 if warehouse == "دارد" else 0
+parking_val = 1 if parking == "Yes" else 0
+elevator_val = 1 if elevator == "Yes" else 0
+warehouse_val = 1 if warehouse == "Yes" else 0
 
 # -----------------------------
 # Prediction Section
 # -----------------------------
-st.subheader("📊 نتیجه پیش‌بینی")
+st.subheader("📊Prediction result")
 
-if st.button("🔍 پیش‌بینی قیمت"):
+if st.button("🔍Price Prediction"):
     # 1) Remove Price column
     model_columns = [c for c in model_columns if c != "Price"]
     # 2) Prepare input DF
@@ -89,11 +81,12 @@ if st.button("🔍 پیش‌بینی قیمت"):
     input_df = input_df[model_columns]
 
     # 6) Predict
-    input_for_model = scaler.transform(input_df)  # خروجی ndarray
+    input_for_model = scaler.transform(input_df) 
     prediction = model.predict(input_for_model)[0]
     usd_pred = prediction / 30000
-    st.success(f"💰 **قیمت پیش‌ بینی‌ شده: {prediction:,.0f} تومان**")
-    st.success(f"💰 **با دلار 30,000 تومان قیمت پیش‌ بینی‌ شده: {usd_pred:,.0f} دلار**")
+    st.success(f"💰 **Predicted Price**: {prediction:,.0f} Toman**")
+    st.success(f"💰 **With an exchange rate of 30,000 Tomans per dollar, the predicted price is: {usd_pred:,.0f} $**")
+
 
 
 
