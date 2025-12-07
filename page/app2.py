@@ -84,8 +84,9 @@ if st.button("🔍Price Prediction"):
     input_for_model = scaler.transform(input_df) 
     prediction = model.predict(input_for_model)[0]
     usd_pred = prediction / 30000
-    st.success(f"💰 **Predicted Price**: {prediction:,.0f} Toman**")
+    st.success(f"💰 **Predicted Price: {prediction:,.0f} Toman**")
     st.success(f"💰 **With an exchange rate of 30,000 Tomans per dollar, the predicted price is: {usd_pred:,.0f} $**")
+
 
 
 
