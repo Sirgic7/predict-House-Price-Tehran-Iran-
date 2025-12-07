@@ -1,47 +1,45 @@
-# predict-House-Price-Tehran-Iran-
-This project is based on a dataset of approximately 3,500 real estate listings from Iran (Tehran) from the year 2020 (1399 Iranian calendar). The objective of this project is to predict house prices based on this dataset.
-# 🏡 پروژه — پیش‌بینی قیمت خانه (House Price Prediction)
-یک WebApp تعاملی برای پیش‌بینی قیمت خانه با استفاده از XGBoost و Streamlit
 
-این اپلیکیشن شامل بخش‌های زیر است:
+# 🏡 Project — House Price Prediction
 
-تحلیل داده‌ها
+An interactive WebApp for predicting house prices using XGBoost and Streamlit.
+This application includes the following sections:
+- Data Analysis
+- Display of model results and hyperparameters
+- House price prediction based on input features
+- Technical details and explanations
 
-نمایش نتایج مدل و Hyperparameterها
+## 🌐 Online WebApp Version
 
-پیش‌بینی قیمت خانه براساس ویژگی‌های ورودی
+The cloud version is ready and requires no installation of Python or packages.
+Simply click the link below and the app will open:
 
-توضیحات فنی و Technical Details
+🔗 Live Demo: [https://yourapp.streamlit.app](https://house-price-tehran.streamlit.app)
 
-## 🌐 نسخه آنلاین WebApp
-
-نسخه Cloud آماده است و نیازی به نصب Python یا پکیج ندارد.
-فقط روی لینک زیر کلیک کنید و اپ باز خواهد شد:
-
-🔗 Live Demo: https://yourapp.streamlit.app
-
-نکته: همه کتابخانه‌ها و محیط Python توسط Streamlit Cloud مدیریت می‌شوند، کاربر هیچ کاری لازم ندارد.
+Note: All Python libraries and the environment are managed by Streamlit Cloud; the user needs to do nothing.
 
 ---
 
-## 🔎 محتوای پروژه
-- `page/` — وب‌اپ Streamlit (UI: Overview, EDA, Model Evaluation, Prediction)    
-- `data/` — دیتاست تمیز شده (نسخه‌ای که برای مدل استفاده شده)  
-- `models/` — مدل‌های ذخیره‌شده (مثلاً `xgboost_model.pkl`)  
-- `requirements.txt` — وابستگی‌ها مورد نیاز برای اجرای webapp و مدل  
-- `README.md` — همین فایل
+## 🔎 Project Contents
+
+- `page/` —  Streamlit web app (UI: Overview, EDA, Model Evaluation, Prediction)
+- `data/` —  Cleaned dataset (the version used for the model)  
+- `models/` — Saved models (e.g., `xgboost_model.pkl`)  
+- `requirements.txt` — Dependencies required to run the webapp and model  
+- `README.md`  — This file
 
 ---
 
-#### توضیحات دیتاست
-- تعداد نمونه: ~**۳۵۰۰** آگهی  
-- ویژگی‌ها: مساحت (مترمربع)، تعداد اتاق‌خواب، پارکینگ (دارد/ندارد)، آسانسور (دارد/ندارد)، انباری، منطقه، قیمت (تومان و USD)  
-- نرخ تبدیل: **1 USD = 30,000 Toman**  
-- نکته: این نسخه **تمیزشده** است — Missing valueها حذف یا اصلاح شده و داده‌های پرت بررسی شده‌اند. دیتاست آمادهٔ تحلیل و مدل‌سازی است.
+#### Dataset Description
+
+- Number of samples: ~3,500 listings
+- Features: Area (square meters), number of bedrooms, parking (yes/no), elevator (yes/no), storage, location, price (in Tomans and USD).
+- Conversion rate: 1 USD = 30,000 Toman.
+- Note: This is the cleaned version — missing values have been removed or corrected, and outliers have been reviewed. The dataset is ready for analysis and modeling.
 
 ---
 
-## 🎯 هدف مدل
-- مسئله: **Regression** (پیش‌بینی قیمت)  
-- مدل اصلی: **XGBoost Regressor**  
-- معیارهای گزارش‌شده: MAE, RMSE, R² و نمودارهای Residual / Actual vs Predicted
+## 🎯 Model Objective
+
+- Problem type: Regression (price prediction)
+- Main model: XGBoost Regressor
+- Reported metrics: MAE, RMSE, R², and Residual / Actual vs. Predicted plots.
