@@ -25,7 +25,7 @@ with tab1:
     st.dataframe(df.head())
 
     st.subheader("data shape:")
-    st.info(f"{df.shape[0]} Row و {df.shape[1]} Column")
+    st.info(f"{df.shape[0]} Row , {df.shape[1]} Column")
 
     st.subheader("Statistical Summary:")
     st.dataframe(df.describe())
@@ -129,6 +129,7 @@ with tab5:
         The model's performance on new data was reliable and stable.
 
         """)
+
 
 
 
