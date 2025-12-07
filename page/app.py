@@ -125,4 +125,9 @@ st.subheader("📚 Data source")
 st.write("This data was collected from the **Kaggle** website. To view the original dataset, you can visit the following link:"
 
 "https://www.kaggle.com/datasets/mokar2001/house-price-tehran-iran")
+st.write("")
+st.write("")
+st.subheader("📚 About Me")
+st.write("Hi! I'm Parham Karkoubzadeh, a Computer Science student interested in Artificial Intelligence and Machine Learning.")
+
 
